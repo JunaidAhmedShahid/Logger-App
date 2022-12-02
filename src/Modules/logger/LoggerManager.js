@@ -19,9 +19,10 @@ const LoggerManager = () => {
 
   const [loading, setLoading] = useState(false);
   const [querySearchParams, setQuerySearchParams] = useState({});
-  const [mockedData, setMockedData] = useState([]);
-  const [dropDowns, setDropDowns] = useState({});
   const [filteredData, setFilteredData] = useState([]);
+  const [actualData, setActualData] = useState([]);
+  const [dropDowns, setDropDowns] = useState({});
+  const [dataForTable, setDataForTable] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [totalCount, setTotalCount] = useState(0);
@@ -59,8 +60,8 @@ const LoggerManager = () => {
     // Set dropdowns options accoding to filtered data
 
     setTotalCount(data?.length);
-    setFilteredData(data?.slice(0, 10));
-    setMockedData(data);
+    setDataForTable(data?.slice(0, 10));
+    setFilteredData(data);
     if (pageNumber !== 1) setPageNumber(1);
     if (itemsPerPage !== 10) setItemsPerPage(10);
     setLoading(false);
@@ -73,9 +74,10 @@ const LoggerManager = () => {
     // Initailize states if data found
     if (responseData) {
       setTotalCount(response?.data?.result?.recordsFiltered);
-      setMockedData(responseData);
+      setFilteredData(responseData);
+      setActualData(responseData);
       setDropdownOptionsHandler(responseData);
-      setFilteredData(responseData?.slice(0, 10));
+      setDataForTable(responseData?.slice(0, 10));
     }
     setLoading(false);
   };
@@ -86,8 +88,8 @@ const LoggerManager = () => {
 
     // CleanUp
     return () => {
-      setMockedData([]);
       setFilteredData([]);
+      setDataForTable([]);
       setQuerySearchParams({});
     };
   }, []);
@@ -96,7 +98,7 @@ const LoggerManager = () => {
   useEffect(() => {
     if (isFirstMount) return;
     setLoading(true);
-    setFilteredDataByParams(mockedData);
+    setFilteredDataByParams(actualData);
   }, [searchParams]);
 
   // Pagination handler
@@ -104,20 +106,20 @@ const LoggerManager = () => {
     if (isFirstMount) return;
     setLoading(true);
     const skip = (pageNumber - 1) * itemsPerPage;
-    const newData = mockedData?.slice(skip, skip + itemsPerPage);
-    setFilteredData(newData);
+    const newData = filteredData?.slice(skip, skip + itemsPerPage);
+    setDataForTable(newData);
     setLoading(false);
   }, [itemsPerPage, pageNumber]);
 
   // Sorting handler
   useEffect(() => {
-    if (isFirstMount || !mockedData?.length) return;
+    if (isFirstMount || !filteredData?.length) return;
     setLoading(true);
-    const sortedData = sortingHandler(mockedData, sortKey, sortOrder);
+    const sortedData = sortingHandler(filteredData, sortKey, sortOrder);
     const skip = (pageNumber - 1) * itemsPerPage;
     const newData = sortedData?.slice(skip, skip + itemsPerPage);
-    setFilteredData(newData);
-    setDropdownOptionsHandler(mockedData);
+    setDataForTable(newData);
+    setDropdownOptionsHandler(filteredData);
     setLoading(false);
   }, [sortKey, sortOrder]);
 
@@ -140,8 +142,8 @@ const LoggerManager = () => {
                   setSortKey={setSortKey}
                   setSortOrder={setSortOrder}
                 />
-                {filteredData?.length > 0 && (
-                  <TableBody filteredData={filteredData} />
+                {dataForTable?.length > 0 && (
+                  <TableBody filteredData={dataForTable} />
                 )}
               </table>
               <Pagination
@@ -157,7 +159,7 @@ const LoggerManager = () => {
           </div>
         </div>
       </div>
-      {filteredData?.length === 0 && (
+      {dataForTable?.length === 0 && (
         <>
           {!loading && (
             <NoRecordFound
@@ -172,4 +174,5 @@ const LoggerManager = () => {
 };
 
 export default LoggerManager;
+
 
