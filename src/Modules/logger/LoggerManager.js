@@ -57,7 +57,7 @@ const LoggerManager = () => {
 
     const data = getSearchedData(dataForFilter, searchParams);
     // Set dropdowns options accoding to filtered data
-    setDropdownOptionsHandler(data);
+    // setDropdownOptionsHandler(data);
     setTotalCount(data?.length);
     setFilteredData(data?.slice(0, 10));
     setMockedData(data);
