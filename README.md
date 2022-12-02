@@ -2,9 +2,13 @@
 
 This project is used to manage Logger Details.
 
+# Getting Started with Git Clone
+
+Clone application from https://github.com/JunaidAhmedShahid/Logger-App.git
+
 ## Installation
 
-### `npm install`
+### `Please Run "npm install" to install required packages`
 
 ## Available Scripts
 
@@ -13,10 +17,11 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.
+Launches the test runner in the interactive watch mode. see the test suites passed or failed
 
 ### `npm run build`
 
@@ -24,10 +29,12 @@ Builds the app for production to the `build` folder.
 
 ## Features
 
-### `Listing`
+1. Listing
+2. Sorting
+3. Pagination
+4. Searching
 
-### `Sorting`
+### `Live Appllication`
 
-### `Pagination`
+Test the app live on this url https://storied-kheer-cc2a1a.netlify.app/administration/logger
 
-### `Searching`
