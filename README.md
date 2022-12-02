@@ -37,5 +37,6 @@ Builds the app for production to the `build` folder.
 ### `Live Appllication`
 
 
-Test the app live on this url https://deluxe-mousse-1ccd34.netlify.app/administration/logger
+
+Test the app live on this url https://quiet-sawine-82e0da.netlify.app/administration/logger
 
