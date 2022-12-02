@@ -57,7 +57,7 @@ const LoggerManager = () => {
 
     const data = getSearchedData(dataForFilter, searchParams);
     // Set dropdowns options accoding to filtered data
-    // setDropdownOptionsHandler(data);
+
     setTotalCount(data?.length);
     setFilteredData(data?.slice(0, 10));
     setMockedData(data);
@@ -95,7 +95,6 @@ const LoggerManager = () => {
   // Search Handler
   useEffect(() => {
     if (isFirstMount) return;
-    if (!mockedData?.length) loadData();
     setLoading(true);
     setFilteredDataByParams(mockedData);
   }, [searchParams]);
@@ -103,7 +102,6 @@ const LoggerManager = () => {
   // Pagination handler
   useEffect(() => {
     if (isFirstMount) return;
-    if (!mockedData?.length) loadData();
     setLoading(true);
     const skip = (pageNumber - 1) * itemsPerPage;
     const newData = mockedData?.slice(skip, skip + itemsPerPage);
@@ -174,3 +172,4 @@ const LoggerManager = () => {
 };
 
 export default LoggerManager;
+
