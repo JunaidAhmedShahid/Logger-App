@@ -1,13 +1,28 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .reactPagination li a {
+    @apply bg-white  text-OlderGray relative inline-flex items-center px-2 py-2  text-sm font-medium   rounded-md;
+  }
+  
+  .reactPagination :first-child > a,
+  .reactPagination :last-child > a {
+    @apply py-3.5;
+  }
+  
+  .reactPagination .flex {
+    @apply space-x-2;
+  }
+  .reactPagination .selected a {
+    @apply text-primary border border-primary px-3 py-2;
+  }
+
+  .transform-267 {
+    transform: rotate(271deg);
+  }
+  .transform-90 {
+    transform: rotate(90deg);
+  }
 }
