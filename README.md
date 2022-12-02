@@ -37,4 +37,4 @@ Builds the app for production to the `build` folder.
 ### `Live Appllication`
 
 
-Test the app live on this url https://zippy-daifuku-e22e59.netlify.app/administration/logger
+Test the app live on this url https://golden-tanuki-e1487d.netlify.app/administration/logger
